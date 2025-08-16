@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🌟 Mini Konvensyen PPV JPV Perak</title>
+    <style>
+        /* CSS Variables & Global Styles */
+        :root{
+            /* Premium Theme (Deep Blue & Gold) */
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #1e40af;
+            --accent-gold: #fcd34d;
+            --bg-dark: #0f172a;
+            --bg-light: #f1f5f9;
+            --panel-bg: #ffffff;
+            --panel-border: #e2e8f0;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --ok: #22c55e;
+            --danger: #dc2626;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+
+        html,body{
+            height:100%;
+            margin:0;
+            color:var(--text-dark);
+            font-family: 'Inter', ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            overflow:hidden;
+            background: linear-gradient(180deg, var(--bg-light) 0%, #FFFFFF 100%);
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        /* Animated background elements */
+        #bg-elements{position:fixed; inset:0; z-index:-1; pointer-events:none;}
+        
+        .bg-element {
+            position: absolute;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231e3a8a" d="M50 0 C75 0 90 25 80 50 C90 75 75 100 50 100 C25 100 10 75 20 50 C10 25 25 0 50 0 Z"/><path fill="%231e40af" d="M50 0 C75 0 90 25 80 50 C90 75 75 100 50 100 C25 100 10 75 20 50 C10 25 25 0 50 0 Z" opacity="0.6" transform="translate(10,10) scale(0.8)"/></svg>');
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.15;
+            animation: float 20s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+            100% { transform: translateY(-100vh) scale(1.5) rotate(720deg); opacity: 0.4; }
+        }
+
+        /* App container */
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top bar and header */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: #fff;
+            padding: 5px;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(20px, 4vw, 36px);
+            color: var(--primary-blue);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: -8px;
+        }
+
+        .nav-buttons .btn {
+            font-weight: 500;
+        }
+
+        .page {
+            display: none;
+            flex: 1;
+            padding: 20px 0;
+            justify-content: center;
+            align-items: center;
+        }
+        .page.active { display: flex; }
+
+        /* General Panel */
+        .panel {
+            padding: clamp(20px, 5vw, 40px);
+            border-radius: 20px;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+            max-width: 900px;
+            margin: 20px auto;
+        }
+        
+        /* Buttons */
+        .btn {
+            appearance: none;
+            border: none;
+            cursor: pointer;
+            padding: 14px 24px;
+            border-radius: 16px;
+            background: linear-gradient(145deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(30, 58, 138, 0.35);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-ghost {
+            background: var(--bg-light);
+            color: var(--primary-blue);
+            border: 1px solid #d1d5db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .btn-ghost:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-gold {
+            background: linear-gradient(145deg, var(--accent-gold), #f9d863);
+            color: var(--text-dark);
+            box-shadow: 0 8px 20px rgba(252, 211, 77, 0.25);
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .grow {
+            flex: 1;
+        }
+
+        .input, select {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 16px;
+            background: var(--bg-light);
+            border: 1px solid var(--panel-border);
+            color: var(--text-dark);
+            font-size: 16px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease;
+        }
+        .input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        /* List Styling */
+        .list {
+            max-height: 40vh;
+            overflow: auto;
+            margin: 20px 0 10px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--panel-border);
+        }
+        
+        .list li:last-child {
+            border-bottom: none;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--bg-light);
+            border: 1px solid var(--panel-border);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .danger {
+            background: linear-gradient(145deg, #ff6b6b, var(--danger));
+            color: white;
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);
+        }
+        
+        /* Wheel & Winner Overlays */
+        #stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #wheelCanvas {
+            width: 66vmin;
+            height: 66vmin;
+            max-width: 700px;
+            max-height: 700px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+        }
+
+        .stage-wrap {
+            position: relative;
+            display: grid;
+            place-items: center;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-bottom: 28px solid var(--primary-blue);
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25));
+        }
+
+        #winnerOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            z-index: 50;
+            animation: fadeIn .3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .winner-name {
+            font-size: clamp(36px, 7vw, 96px);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(180deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(30, 58, 138, 0.2);
+            animation: winnerPop .6s ease forwards;
+        }
+
+        @keyframes winnerPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .winner-category {
+            font-size: clamp(18px, 4vw, 36px);
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-top: 10px;
+        }
+
+        .banner {
+            padding: 10px 24px;
+            border-radius: 999px;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Agenda Section */
+        .agenda-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-left: 4px solid var(--primary-blue);
+            position: relative;
+        }
+        .agenda-item {
+            padding: 20px 0 20px 40px;
+            position: relative;
+        }
+        .agenda-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 25px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            border: 4px solid var(--panel-bg);
+            z-index: 1;
+        }
+        .agenda-content {
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--panel-border);
+        }
+        .agenda-content h4 {
+            margin-top: 0;
+            color: var(--primary-blue);
+        }
+        
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            animation: fadeIn .3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--panel-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid var(--panel-border);
+        }
+        
+        .modal-content h3 { margin-top: 0; color: var(--text-dark);}
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Countdown specific styles */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 80px;
+            transition: transform 0.3s ease;
+        }
+        
+        .countdown-item:hover {
+            transform: scale(1.05);
+        }
+
+        .countdown-value {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--accent-gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--bg-light);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        .modal-content form { text-align: left; }
+        .modal-content form .input { color: #333; }
+        .modal-content form label { color: #333; }
+        .modal-content form .btn { width: 100%; margin-top: 15px; }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <!-- Animated background elements -->
+    <div id="bg-elements"></div>
+
+    <!-- Custom Modal -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <p id="modal-message"></p>
+            <div id="modal-buttons" class="modal-buttons"></div>
+        </div>
+    </div>
+    
+    <div class="app-container">
+        <!-- Top bar and header -->
+        <div class="topbar">
+            <div class="logo">
+                <img src="https://www.jpvpk.gov.my/images/korporat/logo_100x100.png" alt="Logo JPV Perak" style="width:50px; height:50px;">
+                <div>
+                    <div class="title">Mini Konvensyen</div>
+                    <div class="subtitle">PPV JPV PERAK</div>
+                </div>
+            </div>
+            <div class="nav-buttons row">
+                <button class="btn btn-ghost" onclick="showPage('intro')">Utama</button>
+                <button class="btn btn-ghost" onclick="showPage('agenda')">Agenda</button>
+                <button class="btn" onclick="openRegistrationForm()">Daftar</button>
+                <button class="btn" onclick="showAdminLoginModal()">Login Admin</button>
+            </div>
+        </div>
+
+        <!-- Halaman: Utama -->
+        <div id="intro" class="page active">
+            <div class="panel" style="text-align:center;">
+                <h1 style="font-family:'Playfair Display', serif; font-size:42px; color:var(--text-dark); margin:0;">Selamat Datang</h1>
+                <h2 style="font-weight:400; font-size:22px; color:var(--text-muted);">Mini Konvensyen Program Pengembangan Veterinar</h2>
+                <div style="height:20px;"></div>
+                <div class="row" style="justify-content:center; gap:30px;">
+                    <div style="font-size:24px; font-weight:600; color:var(--text-dark);">🗓️ 19 - 21 Ogos 2025</div>
+                    <div style="font-size:24px; font-weight:600; color:var(--text-dark);">📍 Heritage Cameron Highlands, Pahang</div>
+                </div>
+                <div style="height:20px;"></div>
+
+                <!-- Countdown Timer -->
+                <div class="panel" style="background:var(--bg-light); border:none; box-shadow:none; padding:15px; margin:0 auto; max-width:600px;">
+                    <h3 style="margin-top:0; color:var(--text-dark);">Kiraan Detik ke Cabutan Bertuah!</h3>
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <span id="days" class="countdown-value">00</span>
+                            <span class="countdown-label">Hari</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours" class="countdown-value">00</span>
+                            <span class="countdown-label">Jam</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes" class="countdown-value">00</span>
+                            <span class="countdown-label">Minit</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds" class="countdown-value">00</span>
+                            <span class="countdown-label">Saat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height:30px;"></div>
+                <p style="max-width:600px; margin:0 auto; line-height:1.6; color:var(--text-muted);">
+                    Sertai kami dalam tiga hari yang penuh dengan ilmu dan perkongsian. Aplikasi ini menyediakan semua maklumat yang anda perlukan, daripada jadual acara hingga ke cabutan bertuah eksklusif.
+                </p>
+                <div style="height:30px;"></div>
+                <div class="row" style="justify-content:center; gap:20px;">
+                    <button class="btn" onclick="openRegistrationForm()">Daftar Kehadiran</button>
+                    <button class="btn btn-ghost" onclick="showPage('agenda')">Lihat Agenda</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Halaman: Agenda Acara -->
+        <div id="agenda" class="page">
+            <div class="panel">
+                <h2 style="text-align:center; font-family:'Playfair Display', serif; color:var(--text-dark);">Agenda Konvensyen</h2>
+                <div class="agenda-container">
+                    <!-- Hari 1 -->
+                    <div class="agenda-item">
+                        <div class="agenda-content">
+                            <h4>19 Ogos 2025 (Selasa)</h4>
+                            <ul>
+                                <li>10:00 pagi - Berkumpul & Bergerak dari Ibu Pejabat JPV Perak</li>
+                                <li>01:00 ptg - Pendaftaran & Makan Tengah Hari</li>
+                                <li>02:30 ptg - Taklimat & Agihan Bilik</li>
+                                <li>03:30 ptg - Pengenalan Konsep Perniagaan Ternakan</li>
+                                <li>05:30 ptg - Minum Petang & Solat</li>
+                                <li>07:00 malam - Makan Malam</li>
+                                <li>08:00 malam - Kaedah Pengiraan Input Biologi & Ekonomi Ternakan</li>
+                                <li>10:00 malam - Supper & Bersurai</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Hari 2 -->
+                    <div class="agenda-item">
+                        <div class="agenda-content">
+                            <h4>20 Ogos 2025 (Rabu)</h4>
+                            <ul>
+                                <li>07:00 pagi - Sarapan Pagi</li>
+                                <li>08:30 pagi - Sumber Pembiayaan Aspek & Kriteria Penting</li>
+                                <li>10:30 pagi - Minum Pagi</li>
+                                <li>11:00 pagi - Kaedah Penyediaan Rancangan Perniagaan</li>
+                                <li>01:00 ptg - Makan Tengah Hari & Solat</li>
+                                <li>02:30 ptg - Mini Konvensyen PPV JPV Perak</li>
+                                <li>04:30 ptg - Minum Petang & Aktiviti Bebas</li>
+                                <li>05:00 ptg - Makan Malam & Solat</li>
+                                <li>08:00 malam - Sambungan Pembentangan Success Story</li>
+                                <li>10:00 malam - Supper & Bersurai</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Hari 3 -->
+                    <div class="agenda-item">
+                        <div class="agenda-content">
+                            <h4>21 Ogos 2025 (Khamis)</h4>
+                            <ul>
+                                <li>07:00 pagi - Sarapan Pagi</li>
+                                <li>08:00 pagi - Sambungan Pembentangan Success Story</li>
+                                <li>10:00 pagi - Minum Pagi</li>
+                                <li>10:30 pagi - Majlis Pembukaan & Ucapan Pengarah</li>
+                                <li>11:30 pagi - Pengumuman Pemenang Hadiah</li>
+                                <li>11:45 pagi - Cabutan Bertuah</li>
+                                <li>12:00 tengah hari - Makan Tengah Hari & Bersurai</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman Admin (Hidden until login) -->
+        <div id="admin-page" class="page">
+            <div class="panel" style="text-align:center;">
+                <h2 style="margin-top:0; font-family:'Playfair Display', serif;">Panel Admin</h2>
+                <p style="color:var(--text-muted);">Selamat datang ke panel admin. Sila pilih tindakan di bawah.</p>
+                <div class="row" style="justify-content:center; margin-bottom:20px;">
+                    <button class="btn btn-gold" onclick="showPage('attendees')">Urus Peserta</button>
+                    <button class="btn btn-gold" onclick="showPage('wheelPage')">Pusing Roda</button>
+                    <button class="btn btn-ghost" onclick="showPage('winners')">Lihat Pemenang Lepas</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Halaman: Urus Peserta -->
+        <div id="attendees" class="page">
+            <div class="panel">
+                <h2 style="margin-top:0">Urus Peserta</h2>
+                <div class="row">
+                    <input id="nameInput" class="input grow" placeholder="Tambah nama peserta..." />
+                    <button class="btn" id="addNameBtn">Tambah</button>
+                </div>
+                <div style="height:20px;"></div>
+                <div class="row">
+                    <input id="qrNameInput" class="input grow" placeholder="Masukkan nama untuk jana kod QR..." />
+                    <button class="btn" id="generateQrBtn">Jana QR</button>
+                </div>
+                <div class="row" style="justify-content:center; margin-top:20px;">
+                    <canvas id="qr-code-canvas" style="width:280px; height:280px; border-radius:12px; border:1px solid var(--panel-border);"></canvas>
+                </div>
+                <ul id="list" class="list"></ul>
+                <div class="row" style="justify-content:flex-end">
+                    <button class="btn danger" id="clearParticipantsBtn">Padam Semua Peserta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman: Roda Bertuah -->
+        <div id="wheelPage" class="page">
+            <div class="panel" style="text-align:center;">
+                <h2 style="margin-top:0;">Cabutan Bertuah</h2>
+                <div class="stage-wrap">
+                    <div class="pointer"></div>
+                    <canvas id="wheel"></canvas>
+                </div>
+                <div class="stack" style="justify-content:center; margin-top:14px">
+                    <select id="prizeCategory" class="input">
+                        <option value="Cabutan Bertuah">Cabutan Bertuah</option>
+                        <option value="Success Story Terbaik">Success Story Terbaik</option>
+                        <option value="Peg. Pembimbing Terbaik">Peg. Pembimbing Terbaik</option>
+                    </select>
+                    <button class="btn" id="spinBtn">🎯 Putar</button>
+                </div>
+                <div class="badge" id="spinBanner" style="display:none">Kini Berputar… 🥁</div>
+            </div>
+        </div>
+        
+        <!-- Halaman: Pemenang -->
+        <div id="winners" class="page">
+            <div class="panel">
+                <h2 style="margin-top:0">Pemenang Cabutan Bertuah Lepas</h2>
+                <table>
+                    <thead><tr><th>#</th><th>Nama</th><th>Kategori</th><th>Masa</th></tr></thead>
+                    <tbody id="winnersBody"></tbody>
+                </table>
+                <div class="stack" style="justify-content: flex-end; margin-top: 20px;">
+                    <button class="btn secondary" id="clearWinnersBtn">Padam Semua</button>
+                    <button class="btn gold" id="exportBtn">Eksport CSV</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for alerts and confirmations -->
+        <div id="modal" class="modal" onclick="closeModal()">
+            <div class="modal-content">
+                <h3 id="modal-title"></h3>
+                <p id="modal-message"></p>
+                <div id="modal-buttons" class="modal-buttons"></div>
+            </div>
+        </div>
+
+        <!-- Winner overlay -->
+        <div id="winnerOverlay">
+            <div class="winner-box">
+                <div class="winner-title">PEMENANG KAMI ADALAH…</div>
+                <div id="winnerName" class="winner-name"></div>
+                <div id="winnerCategory" style="margin-top: 8px; font-weight: bold; color: var(--gold);"></div>
+                <button class="btn" onclick="document.getElementById('winnerOverlay').style.display='none'">Tutup</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 Mini Konvensyen PPV JPV Perak. Hak Cipta Terpelihara.
+        </div>
+    </div>
+
+    <audio id="audioDrumroll" src="https://assets.mixkit.co/sfx/preview/mixkit-drum-roll-and-cymbal-654.mp3" preload="auto"></audio>
+    <audio id="audioFanfare" src="https://assets.mixkit.co/sfx/preview/mixkit-trumpet-fanfare-674.mpad" preload="auto"></audio>
+
+    <script>
+        // State management
+        const state = {
+            currentPage: 'intro',
+            participants: [],
+            winners: [],
+            isLoggedIn: false
+        };
+
+        // DOM elements
+        const $ = q => document.querySelector(q);
+        const $all = q => document.querySelectorAll(q);
+        const pages = $all('.page');
+        const loginBtn = $('#loginBtn');
+        const usernameInput = $('#usernameInput');
+        const passwordInput = $('#passwordInput');
+        const addNameBtn = $('#addNameBtn');
+        const nameInput = $('#nameInput');
+        const listBody = $('#listBody');
+        const countBadge = $('#count');
+        const spinBtn = $('#spinBtn');
+        const wheelCanvas = $('#wheel');
+        const winnersBody = $('#winnersBody');
+        const winnersOverlay = $('#winnerOverlay');
+        const winnerNameDiv = $('#winnerName');
+        const winnerCategoryDiv = $('#winnerCategory');
+        const exportBtn = $('#exportBtn');
+        const clearWinnersBtn = $('#clearWinnersBtn');
+        const prizeCategorySelect = $('#prizeCategory');
+        const urlPendaftaran = 'https://forms.gle/kBoXbJvsSF9axwfC6';
+        const registerBtn = $('#registerBtn');
+
+
+        // Audio
+        const drumrollAudio = $('#audioDrumroll');
+        const fanfareAudio = $('#audioFanfare');
+
+        // Countdown Timer
+        const countdownDate = new Date("Aug 21, 2025 11:45:00").getTime();
+        const countdownEl = $('#countdown');
+
+        // Variables for the wheel animation
+        let wheelCtx;
+        let spinning = false;
+        let angle = 0;
+        let targetAngle = 0;
+        const colors = [
+            '#1e3a8a', '#3b82f6', '#93c5fd', '#bfdbfe', '#fcd34d', '#eab308'
+        ];
+        
+        // --- Animated Background (Poster Theme) ---
+        function createAnimatedBackground() {
+            const container = $('#bg-elements');
+            if(!container) return;
+            const count = 15;
+            for (let i = 0; i < count; i++) {
+                const element = document.createElement('div');
+                element.className = 'bg-element';
+                element.style.left = `${Math.random() * 100}vw`;
+                element.style.animationDelay = `${Math.random() * 20}s`;
+                element.style.animationDuration = `${Math.random() * 15 + 20}s`;
+                container.appendChild(element);
+            }
+        }
+        
+        // --- Core Functions ---
+
+        /**
+         * Custom modal to replace native alert/confirm.
+         * @param {string} title - The title of the modal.
+         * @param {string} message - The message to display.
+         * @param {Array<Object>} buttons - Array of button objects {text, className, onClick}.
+         */
+        function showModal(title, message, buttons) {
+            const modal = $('#modal');
+            if(!modal) return;
+            const modalTitle = $('#modal-title');
+            const modalMessage = $('#modal-message');
+            const buttonsContainer = $('#modal-buttons');
+
+            modalTitle.textContent = title;
+            modalMessage.innerHTML = message;
+            buttonsContainer.innerHTML = '';
+            
+            buttons.forEach(btn => {
+                const buttonElement = document.createElement('button');
+                buttonElement.textContent = btn.text;
+                buttonElement.className = `btn ${btn.className}`;
+                buttonElement.onclick = () => {
+                    btn.onClick();
+                    modal.style.display = 'none';
+                };
+                buttonsContainer.appendChild(buttonElement);
+            });
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = $('#modal');
+            if(modal) modal.style.display = 'none';
+        }
+
+        // Confirmation wrappers
+        function confirmClearParticipants() {
+            showModal(
+                'Padam Semua Peserta',
+                'Adakah anda pasti untuk memadam semua peserta? Tindakan ini tidak boleh ditarik balik.',
+                [{ text: 'Padam', className: 'danger', onClick: clearAllParticipants }, { text: 'Batal', className: 'secondary', onClick: () => {} }]
+            );
+        }
+
+        function confirmClearWinners() {
+            showModal(
+                'Padam Semua Pemenang',
+                'Adakah anda pasti untuk memadam semua pemenang? Tindakan ini tidak boleh ditarik balik.',
+                [{ text: 'Padam', className: 'danger', onClick: clearAllWinners }, { text: 'Batal', className: 'secondary', onClick: () => {} }]
+            );
+        }
+        
+        function openRegistrationForm() {
+            window.open(urlPendaftaran, '_blank');
+        }
+
+        /**
+         * Navigates to a new page/section.
+         * @param {string} pageId - The ID of the page to show.
+         */
+        function showPage(pageId) {
+            pages.forEach(p => {
+                p.classList.remove('active');
+                if (p.id === pageId) {
+                    p.classList.add('active');
+                }
+            });
+            state.currentPage = pageId;
+            saveState();
+        }
+
+        /** Saves the current state to localStorage. */
+        function saveState() {
+            localStorage.setItem('appState', JSON.stringify(state));
+            if (countBadge) {
+                countBadge.textContent = state.participants.length;
+            }
+        }
+
+        /** Loads state from localStorage. */
+        function loadState() {
+            const savedState = localStorage.getItem('appState');
+            if (savedState) {
+                Object.assign(state, JSON.parse(savedState));
+            }
+            if (state.isLoggedIn) {
+                showPage(state.currentPage || 'intro');
+            } else {
+                showPage('login');
+            }
+        }
+
+        /**
+         * Renders the participant list on the 'add' page.
+         */
+        function renderList() {
+            if (!listBody) return;
+            listBody.innerHTML = '';
+            state.participants.forEach((name, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${name}</td>
+                    <td><button class="delete-btn" data-index="${index}">&times;</button></td>
+                `;
+                listBody.appendChild(tr);
+            });
+            if (countBadge) {
+                countBadge.textContent = state.participants.length;
+            }
+            drawWheel(); // Update wheel whenever list changes
+        }
+
+        /**
+         * Adds a new participant.
+         */
+        async function addParticipant() {
+            const name = nameInput.value.trim();
+            if (name === '') {
+                showModal('Ralat', 'Sila masukkan nama peserta.', [{ text: 'OK', className: '', onClick: () => {} }]);
+                return;
+            }
+            if (state.participants.includes(name)) {
+                showModal('Ralat', 'Peserta ini sudah wujud dalam senarai.', [{ text: 'OK', className: '', onClick: () => {} }]);
+                return;
+            }
+            state.participants.push(name);
+            nameInput.value = '';
+            renderList();
+            saveState();
+        }
+
+        /**
+         * Handles deleting a participant from the list.
+         */
+        function deleteParticipant(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                const index = e.target.dataset.index;
+                const name = state.participants[index];
+                showModal('Padam Peserta', `Anda pasti mahu memadam '${name}'?`, [
+                    { text: 'Padam', className: 'danger', onClick: () => {
+                        state.participants.splice(index, 1);
+                        renderList();
+                        saveState();
+                    }},
+                    { text: 'Batal', className: 'secondary', onClick: () => {} }
+                ]);
+            }
+        }
+
+        /**
+         * Clears all participants from the list.
+         */
+        function clearAllParticipants() {
+            state.participants = [];
+            renderList();
+            saveState();
+        }
+
+        /**
+         * Renders the winners list.
+         */
+        function renderWinners() {
+            if (!winnersBody) return;
+            winnersBody.innerHTML = '';
+            if (state.winners.length === 0) {
+                winnersBody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Tiada pemenang lagi.</td></tr>';
+                return;
+            }
+            state.winners.forEach((winner, index) => {
+                const time = new Date(winner.time).toLocaleTimeString('ms-MY', {hour: '2-digit', minute:'2-digit'});
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${winner.name}</td>
+                    <td>${winner.category}</td>
+                    <td>${time}</td>
+                `;
+                winnersBody.appendChild(tr);
+            });
+        }
+        
+        /**
+         * Clears all winners from the list.
+         */
+        function clearAllWinners() {
+            state.winners = [];
+            renderWinners();
+            saveState();
+        }
+
+        /**
+         * Exports winners list to a CSV file.
+         */
+        function exportCSV() {
+            if (state.winners.length === 0) {
+                showModal('Ralat', 'Tiada pemenang untuk dieksport.', [{ text: 'OK', className: '', onClick: () => {} }]);
+                return;
+            }
+            const header = ['Nama', 'Kategori', 'Masa'];
+            const rows = state.winners.map(w => [w.name, w.category, new Date(w.time).toLocaleString()]);
+            const csv = [header.join(','), ...rows.map(row => `"${row.join('","')}"`)].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'pemenang-cabutan-bertuah.csv');
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showModal('Berjaya!', 'Senarai pemenang telah dieksport!', [{ text: 'OK', className: '', onClick: () => {} }]);
+        }
+
+        // --- Wheel & Drawing Functions ---
+        
+        /**
+         * Draws the wheel with participant names.
+         */
+        function drawWheel() {
+            if (!wheelCanvas) return;
+            const w = wheelCanvas.width;
+            const h = wheelCanvas.height;
+            wheelCtx = wheelCanvas.getContext('2d');
+            wheelCtx.clearRect(0, 0, w, h);
+
+            const N = state.participants.length;
+            if (N === 0) {
+                wheelCtx.font = "bold 24px 'Inter'";
+                wheelCtx.fillStyle = 'rgba(255,255,255,0.5)';
+                wheelCtx.textAlign = 'center';
+                wheelCtx.textBaseline = 'middle';
+                wheelCtx.fillText("Tiada Peserta", w/2, h/2);
+                return;
+            }
+
+            const r = Math.min(w, h) / 2;
+            const segAngle = (Math.PI * 2) / N;
+
+            wheelCtx.save();
+            wheelCtx.translate(w / 2, h / 2);
+            wheelCtx.rotate(angle);
+
+            for (let i = 0; i < N; i++) {
+                const startAngle = i * segAngle;
+                const endAngle = startAngle + segAngle;
+                const color = colors[i % colors.length];
+
+                // Draw segment
+                wheelCtx.beginPath();
+                wheelCtx.moveTo(0, 0);
+                wheelCtx.arc(0, 0, r, startAngle, endAngle);
+                wheelCtx.closePath();
+                wheelCtx.fillStyle = color;
+                wheelCtx.fill();
+                wheelCtx.strokeStyle = 'rgba(0,0,0,0.2)';
+                wheelCtx.lineWidth = 2;
+                wheelCtx.stroke();
+
+                // Draw labels
+                wheelCtx.save();
+                wheelCtx.rotate(startAngle + segAngle / 2);
+                wheelCtx.textAlign = 'center';
+                wheelCtx.textBaseline = 'middle';
+                wheelCtx.fillStyle = 'white';
+                wheelCtx.font = `bold ${Math.max(14, r * 0.04)}px 'Inter'`;
+                const text = state.participants[i];
+                wheelCtx.translate(r * 0.7, 0);
+                wheelCtx.rotate(Math.PI / 2);
+                wheelCtx.fillText(clipText(text, r * 0.5, wheelCtx), 0, 0);
+                wheelCtx.restore();
+            }
+
+            // Center circle
+            wheelCtx.beginPath();
+            wheelCtx.arc(0, 0, r * 0.18, 0, Math.PI * 2);
+            wheelCtx.fillStyle = '#1b2447';
+            wheelCtx.fill();
+            wheelCtx.strokeStyle = 'rgba(255,255,255,.35)';
+            wheelCtx.lineWidth = 3;
+            wheelCtx.stroke();
+            wheelCtx.restore();
+        }
+
+        /**
+         * Clips text to fit within a given max width.
+         */
+        function clipText(text, maxWidth, ctx) {
+            if (ctx.measureText(text).width <= maxWidth) return text;
+            let clippedText = text;
+            while (ctx.measureText(clippedText + '…').width > maxWidth) {
+                clippedText = clippedText.slice(0, -1);
+            }
+            return clippedText + '…';
+        }
+
+        /**
+         * Spins the wheel to a random winner.
+         */
+        function spinWheel() {
+            if (spinning || state.participants.length < 2) {
+                showModal('Ralat', 'Sila tambah sekurang-kurangnya 2 peserta untuk memutar roda.');
+                return;
+            }
+            spinning = true;
+            const spinBanner = $('#spinBanner');
+            if (spinBanner) spinBanner.style.display = 'inline-flex';
+            drumrollAudio.play();
+
+            const N = state.participants.length;
+            const winnerIndex = Math.floor(Math.random() * N);
+            const segAngle = (Math.PI * 2) / N;
+
+            const centerTarget = (Math.PI * 2) - (winnerIndex * segAngle + segAngle / 2);
+            const spins = 6 + Math.floor(Math.random() * 4);
+            targetAngle = angle + spins * (Math.PI * 2);
+
+            const duration = 5500 + Math.random() * 1500;
+            const start = performance.now();
+            const startAngle = angle;
+
+            function animate(t) {
+                const p = Math.min(1, (t - start) / duration);
+                const ease = 1 - Math.pow(1 - p, 3);
+                angle = startAngle + (targetAngle - startAngle) * ease;
+                drawWheel();
+                if (p < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    spinning = false;
+                    if (spinBanner) spinBanner.style.display = 'none';
+                    drumrollAudio.pause();
+                    drumrollAudio.currentTime = 0;
+                    
+                    const winnerName = state.participants[winnerIndex];
+                    const winnerCategory = prizeCategorySelect.value;
+                    
+                    // Show winner overlay
+                    winnerNameDiv.textContent = winnerName;
+                    winnerCategoryDiv.textContent = winnerCategory;
+                    winnersOverlay.classList.add('show');
+                    
+                    fanfareAudio.play();
+                    confetti({
+                        particleCount: 220, spread: 70, origin: { y: 0.7 }
+                    });
+                    setTimeout(() => confetti({ particleCount: 120, angle: 60, spread: 55, origin: { x: 0 } }), 300);
+                    setTimeout(() => confetti({ particleCount: 120, angle: 120, spread: 55, origin: { x: 1 } }), 400);
+
+                    // Add to winners list
+                    state.winners.push({ name: winnerName, category: winnerCategory, time: new Date().toISOString() });
+                    // Remove from participants
+                    state.participants.splice(winnerIndex, 1);
+                    saveState();
+                    renderList();
+                    renderWinners();
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // --- QR Code Scanning ---
+        let html5QrCode = null;
+        let isScanning = false;
+
+        async function startQrScan() {
+            const qrReaderEl = $('#qr-reader');
+            if(!qrReaderEl) return;
+            qrReaderEl.style.display = 'block';
+
+            if (!html5QrCode) {
+                html5QrCode = new Html5Qrcode("qr-reader");
+            }
+
+            isScanning = true;
+            
+            html5QrCode.start(
+                { facingMode: "environment" },
+                { fps: 10, qrbox: { width: 250, height: 250 } },
+                async (decodedText) => {
+                    await stopQrScan();
+                    const name = decodedText.trim();
+                    if (name && !state.participants.includes(name)) {
+                        state.participants.push(name);
+                        renderList();
+                        saveState();
+                        showModal('Berjaya!', `Peserta '${name}' berjaya ditambah!`, [{ text: 'OK', className: '', onClick: () => {} }]);
+                    } else if (name) {
+                        showModal('Ralat', `Peserta '${name}' sudah wujud.`, [{ text: 'OK', className: '', onClick: () => {} }]);
+                    }
+                },
+                (errorMessage) => {
+                    console.warn(`QR Scan: ${errorMessage}`);
+                }
+            ).catch(err => {
+                showModal('Ralat', 'Gagal memulakan pengimbas QR. Sila pastikan anda memberikan kebenaran kamera.', [{ text: 'OK', className: '', onClick: () => {} }]);
+                console.error(err);
+            });
+        }
+
+        async function stopQrScan() {
+            if (isScanning) {
+                await html5QrCode.stop();
+                const qrReaderEl = $('#qr-reader');
+                if(qrReaderEl) qrReaderEl.style.display = 'none';
+                isScanning = false;
+            }
+        }
+        
+        // --- Admin Login ---
+        function showAdminLoginModal() {
+            const formHtml = `
+                <form onsubmit="handleAdminLogin(event)">
+                    <p style="text-align:left; margin-bottom: 20px;">Sila masukkan kelayakan anda untuk mengakses panel admin.</p>
+                    <label for="adminUsername" style="font-weight:600; margin-bottom:8px; display:block; text-align:left;">Nama Pengguna</label>
+                    <input type="text" id="adminUsername" class="input" placeholder="Nama pengguna" required />
+                    <div style="height:15px;"></div>
+                    <label for="adminPassword" style="font-weight:600; margin-bottom:8px; display:block; text-align:left;">Kata Laluan</label>
+                    <input type="password" id="adminPassword" class="input" placeholder="Kata laluan" required />
+                    <div style="height:20px;"></div>
+                    <button type="submit" class="btn">Log Masuk</button>
+                </form>
+            `;
+            showModal('Log Masuk Admin', formHtml, []);
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+
+            if (username === 'Atlas' && password === '553901') {
+                state.isLoggedIn = true;
+                saveState();
+                closeModal();
+                showPage('admin-page');
+            } else {
+                showModal('Ralat Log Masuk', 'Nama pengguna atau kata laluan salah.', [{
+                    text: 'OK',
+                    className: '',
+                    onClick: () => {}
+                }]);
+            }
+        }
+
+        // --- Event Listeners ---
+        
+        // Login Logic
+        if (loginBtn) {
+            loginBtn.addEventListener('click', () => {
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+                if (username === 'Atlas' && password === '553901') {
+                    state.isLoggedIn = true;
+                    saveState();
+                    showModal('Berjaya!', 'Log masuk berjaya!', [{ text: 'OK', className: '', onClick: () => showPage('home') }]);
+                } else {
+                    showModal('Ralat!', 'Nama pengguna atau kata laluan tidak sah.', [{ text: 'OK', className: '', onClick: () => {} }]);
+                }
+            });
+        }
+
+        // Countdown Timer
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (countdownEl) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownEl.innerHTML = "Cabutan Bertuah sedang berlangsung!";
+                } else {
+                    countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                }
+            }
+        }, 1000);
+
+        // Page Navigation
+        if ($('#startBtn')) $('#startBtn').addEventListener('click', () => showPage('wheelPage'));
+        if ($('#manageBtn')) $('#manageBtn').addEventListener('click', () => showPage('add'));
+        if ($('#winnersBtn')) $('#winnersBtn').addEventListener('click', () => {
+            renderWinners();
+            showPage('winners');
+        });
+        if ($('#toWheelBtn')) $('#toWheelBtn').addEventListener('click', () => showPage('wheelPage'));
+        if (registerBtn) registerBtn.addEventListener('click', openRegistrationForm);
+        
+        // Participant Management
+        if (addNameBtn) addNameBtn.addEventListener('click', addParticipant);
+        if (nameInput) nameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addParticipant();
+        });
+        if (listBody) listBody.addEventListener('click', deleteParticipant);
+        if ($('#clearBtn')) $('#clearBtn').addEventListener('click', () => confirmClearParticipants());
+        if (document.getElementById('generateQrBtn')) {
+            document.getElementById('generateQrBtn').addEventListener('click', generateQRCode);
+        }
+        if (document.getElementById('qrNameInput')) {
+            document.getElementById('qrNameInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') generateQRCode();
+            });
+        }
+        if (document.getElementById('scanBtn')) {
+            document.getElementById('scanBtn').addEventListener('click', startQrScan);
+        }
+
+        // Lucky Draw Wheel
+        if (spinBtn) spinBtn.addEventListener('click', spinWheel);
+
+        // Winners Page
+        if (exportBtn) exportBtn.addEventListener('click', exportCSV);
+        if (clearWinnersBtn) clearWinnersBtn.addEventListener('click', () => confirmClearWinners());
+        
+        // Initial setup
+        window.onload = () => {
+            loadState();
+            renderList();
+            drawWheel();
+            createAnimatedBackground();
+        };
